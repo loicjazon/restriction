@@ -104,6 +104,11 @@ class Lj_Restriction_Public {
 
 	}
 
+    public function support_html5_fallback()
+    {
+        return true;
+    }
+
 	public function handler( $tag ) {
 
 		return ( ! is_array( $tag ) ) ? '' : $tag['content'];
