@@ -104,6 +104,11 @@ class Lj_Restriction_Public {
 
 	}
 
+    public function support_html5_fallback()
+    {
+        return true;
+    }
+
 	public function handler( $tag ) {
 
 		return ( ! is_array( $tag ) ) ? '' : $tag['content'];
@@ -124,6 +129,11 @@ class Lj_Restriction_Public {
 		// date demandé par l'utilisateur
 		$date_event = Carbon::createFromFormat( 'Y-m-d', $form->get_posted_data( 'date-demande' ) );
 
+		if ( ! Carbon::today()->lt( $date_event ) ) {
+            $result->invalidate( 'date-demande', "La date ne peux être précéder aujourd'hui" );
+            return $result;
+        }
+        
 		// nombre de jours autorisé entre aujourd'hui et la demande
 		$delta = $deadlines[0]['options'][0];
 

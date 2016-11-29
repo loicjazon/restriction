@@ -166,6 +166,7 @@ class Lj_Restriction {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'wpcf7_init', $plugin_public, 'add_shortcode' );
+        $this->loader->add_filter( 'wpcf7_support_html5_fallback', $plugin_public, 'support_html5_fallback', 10, 2 );
 		$this->loader->add_filter( 'wpcf7_validate', $plugin_public, 'validate', 10, 2 );
 
 	}
